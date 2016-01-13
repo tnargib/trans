@@ -26,19 +26,20 @@ class User extends CI_Controller
 		{
 			$this->form_validation->set_rules('username', 'username', 'required|alpha_dash');
 			$this->form_validation->set_rules('password', 'password', 'required');
-			$this->form_validation->set_rules('mail', 'mail', 'required|alpha_dash');			
-			$this->form_validation->set_rules('nom', 'nom', 'required|alpha_dash');
-			$this->form_validation->set_rules('prenom', 'prenom', 'required|alpha_dash');
-			$this->form_validation->set_rules('telephone', 'telpehone', 'required|numeric');
-			$this->form_validation->set_rules('date', 'date', 'required|alpha_dash');
-			$this->form_validation->set_rules('formation', 'formation', 'required|alpha_dash');
-			$this->form_validation->set_rules('genre', 'genre', 'required|alpha_dash');
-			$this->form_validation->set_rules('site', 'site', 'required|alpha_dash');
-			$this->form_validation->set_rules('influence', 'influence', 'required|alpha_dash');
+			$this->form_validation->set_rules('passconf', 'passconf', 'required');
+			$this->form_validation->set_rules('mail', 'mail', 'required');			
+			$this->form_validation->set_rules('nom', 'nom', 'required');
+			$this->form_validation->set_rules('prenom', 'prenom', 'required');
+			$this->form_validation->set_rules('telephone', 'telpehone', 'required');
+			$this->form_validation->set_rules('date', 'date', 'required');
+			$this->form_validation->set_rules('formation', 'formation', 'required');
+			$this->form_validation->set_rules('genre', 'genre', 'required');
+			$this->form_validation->set_rules('site', 'site', 'required');
+			$this->form_validation->set_rules('influence', 'influence', 'required');
 
 			if ($this->form_validation->run())
 			{
-				if($this->User_model->register($this->input->post('username'), $this->input->post('password')) === TRUE)
+				if($this->User_model->register($this->input->post('username'), $this->input->post('password'), $this->input->post('mail'), $this->input->post('nom'), $this->input->post('prenom'), $this->input->post('telephone'), $this->input->post('date'), $this->input->post('formation'), $this->input->post('genre'), $this->input->post('site'), $this->input->post('influence')) === TRUE)
 					redirect('index');
 				else
 					$data['error'] = 'Le pseudo existe déjà. Veuillez réessayer.';
