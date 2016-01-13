@@ -38,7 +38,7 @@ class User extends CI_Controller
 
 			if ($this->form_validation->run())
 			{
-				if($this->User_model->register($this->input->post('username'), $this->input->post('password'), $this->input->post('mail'), $this->input->post('nom'), $this->input->post('prenom'), $this->input->post('telephone'), $this->input->post('date'), $this->input->post('formation'), $this->input->post('genre'), $this->input->post('site'), $this->input->post('influence')) === TRUE)
+				if($this->User_model->register($this->input->post('username'), $this->input->post('password')) === TRUE)
 					redirect('index');
 				else
 					$data['error'] = 'Le pseudo existe déjà. Veuillez réessayer.';
