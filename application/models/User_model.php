@@ -27,7 +27,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function register($username, $password, $phone, $mail, $name, $surname, $scenename, $country, $date, $formation, $genre, $site, $state, $simil)
+    public function register($username, $password, $mail, $name, $surname, $phone, $date, $formation, $genre, $site, $influence, $scenename, $country, $state, $simil)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
 

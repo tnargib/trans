@@ -8,13 +8,13 @@
 			echo form_open('inscription');
 
 			$options = array(
-                  		'france'  => 'France',
-                  		'murica'    => 'Etats-Unis',
-                 		'allemagne'   => 'Allemagne',
-                  		'bresil' => 'Brésil',
+                'france'  => 'France',
+                'murica'    => 'Etats-Unis',
+                'allemagne'   => 'Allemagne',
+                'bresil' => 'Brésil',
 				'angleterre'    => 'Angleterre',
-                 		'espagne'   => 'Espagne',
-                  		'russie' => 'Russie',
+                'espagne'   => 'Espagne',
+                'russie' => 'Russie',
 				'pays_bas' => 'Pays-Bas',
 				'italie' => 'Italie',
 				'mexique' => 'Mexique',
