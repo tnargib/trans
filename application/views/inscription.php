@@ -1,5 +1,5 @@
 <main>
-	<section class="small">
+	<section class="">
 		<h1 class="text-center">Inscription</h1>
 		<?php
 			if(isset($error))
@@ -113,20 +113,33 @@
 
 			
 		?>
-		<p><?= form_input($username) ?></p>
-		<p><?= form_password($password) ?></p>
-		<p><?= form_password($passconf) ?></p>
-		<p><?= form_input($mail) ?></p>
-		<p><?= form_input($nom) ?></p>
-		<p><?= form_input($prenom) ?></p>
-		<p><?= form_input($telephone) ?></p>
-		<p><?= form_dropdown('pays', $options, 'france') ?> </p>
-		<p><?= form_input($date) ?></p>
-		<p><?= form_textarea($formation) ?></p>
-		<p><?= form_input($genre) ?></p>
-		<p><?= form_input($site) ?></p>
-		<p><?= form_textarea($influence) ?></p>
- 		<p><?= form_submit('inscription', 'S\'inscrire', ['class' => 'block']) ?></p>
+		<table style="width:100%;text-align:center;">
+		<tr>
+		<td>
+			<p><?= form_input($username) ?></p>
+			<p><?= form_password($password) ?></p>
+			<p><?= form_password($passconf) ?></p>
+			<p><?= form_input($mail) ?></p>
+			<p><?= form_input($nom) ?></p>
+			<p><?= form_input($prenom) ?></p>
+			<p><?= form_input($telephone) ?></p>
+			<p><?= form_dropdown('pays', $options, 'france') ?> </p>
+			<p><?= form_input($date) ?></p>
+		</td>
+		<td>
+			
+			<p><?= form_textarea($formation) ?></p>
+			<p><?= form_input($genre) ?></p>
+			<p><?= form_input($site) ?></p>
+			<p><?= form_textarea($influence) ?></p>
+	 		
+ 		</td>
+		</tr>
+		<tr><td colspan="2">
+			<p style="width:60%;margin:auto;margin-bottom: 10px;"><?= form_submit('inscription', 'S\'inscrire', ['class' => 'block']) ?></p>
+		</td></tr>
+		</table>
 		<?= form_close() ?>
+		
 	</section>
 </main>

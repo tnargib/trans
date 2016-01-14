@@ -41,18 +41,25 @@ body > header nav ul li a:hover {
 textarea {
     display: block;
     box-sizing: border-box;
-    min-width: 100%;
-    max-width: 100%;
+    /*min-width: 90%;
+    max-width: 90%;*/
 }
 
-input[type="text"], input[type="password"], input[type="email"], textarea {
+table td {
+    vertical-align: top;
+}
+
+input, textarea, select {
     padding: 10px;
     border: 1px solid #AAA;
     border-radius: 3px;
+    width: 80%;
+    margin: auto;
+    box-sizing: border-box;
     transition: box-shadow 200ms ease-out 0s;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+input:focus, textarea:focus {
     box-shadow: 0px 0px 2px 2px #DDD inset;
 }
 
