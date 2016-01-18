@@ -53,10 +53,16 @@ input, textarea, select {
     padding: 10px;
     border: 1px solid #AAA;
     border-radius: 3px;
-    width: 80%;
+    width: 100%;
     margin: auto;
     box-sizing: border-box;
     transition: box-shadow 200ms ease-out 0s;
+}
+
+#inscription input,
+#inscription textarea,
+#inscription select {
+    width: 80%;
 }
 
 input:focus, textarea:focus {

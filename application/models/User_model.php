@@ -27,35 +27,36 @@ class User_model extends CI_Model
         }
     }
 
-    public function register($username, $password, $mail, $name, $surname, $phone, $date, $formation, $genre, $site, $influence, $scenename, $country, $state, $simil)
+    public function register($username, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country, $state)
     {
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        if ($this->db->get_where('artiste', ['username' => $username])->num_rows() > 0)
+        if ($this->db->get_where('artiste', ['login' => $username])->num_rows() > 0)
+            return FALSE;
+        else if($password != $passconf)
             return FALSE;
         else
             return $this->db->insert('artiste', [
                 'login' => $username,
-                'pass' => $password,
-		'telephone' => $phone,
+                'pass' => $pass_hash,
                 'mail' => $mail,
-		'nom' => $name,
+                'nom' => $name,
                 'prenom' => $surname,
-		'nomscene' => $scenename,
-		'pays' => $country,
-                'datedebut' => $date,
-		'formation' => $formation,
+                'nomscene' => $sceneName,
+		        'telephone' => $phone,
+		        'datedebut' => $date,
+                'formation' => $formation,
                 'genre' => $genre,
-		'siteweb' => $site,
+                'siteweb' => $site,
+                'artiste_simil' => $influence,
+		        'pays' => $country,
                 'statut' => $state,
-		'artiste_simil' => $simil,
-		
             ]);
     }
 
     public function connect($username, $password)
     {
-        $user = $this->db->limit(1)->get_where('users', ['username' => $username])->unbuffered_row();
+        $user = $this->db->limit(1)->get_where('personne', ['login' => $username])->unbuffered_row();
 
         if ($user != NULL && password_verify($password, $user->password))
         {
@@ -69,6 +70,26 @@ class User_model extends CI_Model
         }
         else
             return FALSE;
+    }
+
+    function login($pseudo, $mdp)
+    {
+        $this->db->select('id, login, pass');
+        $this->db->from('personne');
+        $this->db->where('login', $pseudo);
+        $this->db->where('pass', password_hash($mdp, PASSWORD_DEFAULT));
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+
+        if($query -> num_rows() == 1)
+        {
+            return $query->result();
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public function disconnect()
