@@ -9,6 +9,7 @@ class User extends CI_Controller
 		$this->load->model('User_model', '', TRUE);
 
         $this->load->library('form_validation');
+        $this->load->library('session');
 
 		$this->load->helper('html');
 		$this->load->helper('url');
@@ -81,13 +82,14 @@ class User extends CI_Controller
 		$this->load->view('footer', $data);
 	}
 
-	function check_log_co($mdp)
+	function check_log_co()
 	{
 		//Field validation succeeded.  Validate against database
 		$pseudo = $this->input->post('username');
+		$pass = $this->input->post('password');
 
 		//query the database
-		$result = $this->user_model->login($pseudo, $mdp);
+		$result = $this->User_model->login($pseudo, $pass);
 
 		if($result)
 		{
@@ -96,7 +98,6 @@ class User extends CI_Controller
 			{
 				$sess_array = array(
 					'logged_in' => TRUE,
-					'id' => $row->id,
 					'login' => $row->pseudo
 				);
 				$this->session->set_userdata($sess_array);
@@ -105,7 +106,7 @@ class User extends CI_Controller
 		}
 		else
 		{
-			$this->form_validation->set_message('check_log_co', 'Désolé... Cet utilisateur n\'existe pas. (On a même cherché chez les gobs...)');
+			$this->form_validation->set_message('check_log_co', 'Désolé... Cet utilisateur n\'existe pas.');
 			return false;
 		}
 	}

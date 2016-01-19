@@ -29,7 +29,7 @@ class User_model extends CI_Model
 
     public function register($username, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country, $state)
     {
-        $pass_hash = password_hash($password, PASSWORD_DEFAULT);
+        $pass_hash = sha1($password);
 
         if ($this->db->get_where('artiste', ['login' => $username])->num_rows() > 0)
             return FALSE;
@@ -38,7 +38,7 @@ class User_model extends CI_Model
         else
             return $this->db->insert('artiste', [
                 'login' => $username,
-                'pass' => $pass_hash,
+                'pass' => $password,
                 'mail' => $mail,
                 'nom' => $name,
                 'prenom' => $surname,
@@ -74,10 +74,10 @@ class User_model extends CI_Model
 
     function login($pseudo, $mdp)
     {
-        $this->db->select('id, login, pass');
+        $this->db->select('login, pass');
         $this->db->from('personne');
         $this->db->where('login', $pseudo);
-        $this->db->where('pass', password_hash($mdp, PASSWORD_DEFAULT));
+        $this->db->where('pass', $mdp);
         $this->db->limit(1);
 
         $query = $this->db->get();
