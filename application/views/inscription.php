@@ -83,7 +83,7 @@
 				'name' => 'date',
 				'id' => 'date',
 				'type' => 'date',
-				'placeholder' => 'Date de formation',
+				'placeholder' => 'Année de formation',
 				'value' => set_value('date')
 			];
 
