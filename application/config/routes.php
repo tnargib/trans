@@ -60,6 +60,7 @@ $route['deconnexion'] = 'user/disconnect';
 
 $route['inscription'] = 'user/register';
 
-$route['todolist'] = 'todolist/display';
-$route['todolist/delete'] = 'todolist/delete_task';
-$route['todolist/priority'] = 'todolist/change_task_priority';
+//route['reserver'] = 'reservation/display';
+$route['reserver/rechercher'] = 'reservation/search';
+$route['reserver/ajouter'] = 'reservation/add';
+$route['reserver/supprimer'] = 'reservation/delete';

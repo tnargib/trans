@@ -12,7 +12,7 @@
 		<nav>
 			<ul>
 			<?php if (isset($user) && $user->connected) { ?>
-				<li><a href="<?= site_url('index') ?>">Réserver salle</a></li>
+				<li><a href="<?= site_url('reserver') ?>">Réserver salle</a></li>
 				<li><a href="<?= site_url('index') ?>">Mon profil</a></li>
 				<li><a href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>
 			<?php } else { ?>
