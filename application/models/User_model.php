@@ -2,9 +2,8 @@
 
 class User_model extends CI_Model
 {
-    public $connected = FALSE;
-    public $id        = -1;
-    public $username  = 'Unknown';
+    public $connected = FALSE;    
+    public $login  = 'Unknown';
     public $password  = 'password';
 
     public function __construct()
@@ -13,31 +12,30 @@ class User_model extends CI_Model
 
         session_start();
 
-        if (isset($_SESSION['user']))
+        if (isset($_SESSION['login']))
         {
-            $user = $this->db->limit(1)->get_where('users', ['id' => $_SESSION['user']])->unbuffered_row();
+            $user = $this->db->limit(1)->get_where('personne', ['login' => $_SESSION['login']])->unbuffered_row();
 
             if ($user != NULL)
             {
-                $this->connected = TRUE;
-                $this->id        = $user->id;
-                $this->username  = $user->username;
+                $this->connected = TRUE;                
+                $this->login  = $user->login;
                 $this->password  = $user->password;
             }
         }
     }
 
-    public function register($username, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country, $state)
+    public function register($login, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country, $state)
     {
         $pass_hash = sha1($password);
 
-        if ($this->db->get_where('artiste', ['login' => $username])->num_rows() > 0)
+        if ($this->db->get_where('artiste', ['login' => $login])->num_rows() > 0)
             return FALSE;
         else if($password != $passconf)
             return FALSE;
         else
             return $this->db->insert('artiste', [
-                'login' => $username,
+                'login' => $login,
                 'pass' => $password,
                 'mail' => $mail,
                 'nom' => $name,
@@ -58,38 +56,17 @@ class User_model extends CI_Model
     {
         $user = $this->db->limit(1)->get_where('personne', ['login' => $username])->unbuffered_row();
 
-        if ($user != NULL && password_verify($password, $user->password))
+        if ($user != NULL && $password == $user->pass)
         {
-            $_SESSION['user'] = $user->id;
+            $_SESSION['login'] = $user->login;
             $this->connected = TRUE;
-            $this->id        = $user->id;
-            $this->username  = $user->username;
-            $this->password  = $user->password;
+            $this->login  = $user->login;
+            $this->password  = $user->pass;
 
             return TRUE;
         }
         else
             return FALSE;
-    }
-
-    function login($pseudo, $mdp)
-    {
-        $this->db->select('login, pass');
-        $this->db->from('personne');
-        $this->db->where('login', $pseudo);
-        $this->db->where('pass', $mdp);
-        $this->db->limit(1);
-
-        $query = $this->db->get();
-
-        if($query -> num_rows() == 1)
-        {
-            return $query->result();
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public function disconnect()

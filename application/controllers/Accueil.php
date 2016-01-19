@@ -32,7 +32,7 @@ class Accueil extends CI_Controller {
 	public function index()
 	{
 		if ($this->User_model->connected)
-			redirect('todolist');
+			//redirect('index');
 
 		$data = ['user' => $this->User_model];
 

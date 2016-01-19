@@ -12,7 +12,7 @@
 		<nav>
 			<ul>
 			<?php if (isset($user) && $user->connected) { ?>
-				<li><a href="<?= site_url('todolist') ?>">Ma todo liste</a></li>
+				<li><a href="<?= site_url('index') ?>">Réserver salle</a></li>
 				<li><a href="<?= site_url('deconnexion') ?>">Deconnexion</a></li>
 			<?php } else { ?>
 				<li><a href="<?= site_url('index') ?>">Accueil</a></li>

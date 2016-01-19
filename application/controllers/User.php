@@ -9,7 +9,6 @@ class User extends CI_Controller
 		$this->load->model('User_model', '', TRUE);
 
         $this->load->library('form_validation');
-        $this->load->library('session');
 
 		$this->load->helper('html');
 		$this->load->helper('url');
@@ -61,54 +60,29 @@ class User extends CI_Controller
 	public function connect()
 	{
 		if ($this->User_model->connected)
-			redirect('todolist');
+			redirect('index');
 
 		$data = ['user' => $this->User_model];
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
 			$this->form_validation->set_rules('username', 'username', 'required|alpha_dash');
-			$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|callback_check_log_co',
-                                      array( 'required' => 'Vous devez indiquer quelque chose pour le mot de passe' ));
+			$this->form_validation->set_rules('password', 'password', 'required');
 
 			if ($this->form_validation->run())
 			{
-				redirect('index');
+				if ($this->User_model->connect($this->input->post('username'), $this->input->post('password')) === TRUE)
+					redirect('index');
+				else
+					$data['error'] = 'L\'utilisateur n\'existe pas ou le mot de passe est incorrect.';
 			}
+			else
+				$data['error'] = 'Le formulaire est mal rempli.';
 		}
 
 		$this->load->view('header', $data);
 		$this->load->view('connexion', $data);
 		$this->load->view('footer', $data);
-	}
-
-	function check_log_co()
-	{
-		//Field validation succeeded.  Validate against database
-		$pseudo = $this->input->post('username');
-		$pass = $this->input->post('password');
-
-		//query the database
-		$result = $this->User_model->login($pseudo, $pass);
-
-		if($result)
-		{
-			$sess_array = array();
-			foreach($result as $row)
-			{
-				$sess_array = array(
-					'logged_in' => TRUE,
-					'login' => $row->pseudo
-				);
-				$this->session->set_userdata($sess_array);
-			}
-			return TRUE;
-		}
-		else
-		{
-			$this->form_validation->set_message('check_log_co', 'Désolé... Cet utilisateur n\'existe pas.');
-			return false;
-		}
 	}
 
 	public function disconnect()
