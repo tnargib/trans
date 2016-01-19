@@ -29,10 +29,8 @@ class Accueil extends CI_Controller {
 		$this->load->helper('url');
 	 }
 
-	public function index()
-	{
-		if ($this->User_model->connected)
-			//redirect('index');
+	public function index()	{
+		
 
 		$data = ['user' => $this->User_model];
 

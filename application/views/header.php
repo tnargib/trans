@@ -13,7 +13,8 @@
 			<ul>
 			<?php if (isset($user) && $user->connected) { ?>
 				<li><a href="<?= site_url('index') ?>">Réserver salle</a></li>
-				<li><a href="<?= site_url('deconnexion') ?>">Deconnexion</a></li>
+				<li><a href="<?= site_url('index') ?>">Mon profil</a></li>
+				<li><a href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>
 			<?php } else { ?>
 				<li><a href="<?= site_url('index') ?>">Accueil</a></li>
 				<li><a href="<?= site_url('inscription') ?>"?>Inscription</a></li>

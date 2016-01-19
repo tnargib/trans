@@ -2,8 +2,9 @@
 
 class User_model extends CI_Model
 {
-    public $connected = FALSE;    
-    public $login  = 'Unknown';
+    public $connected = FALSE;
+    public $id        = -1;
+    public $username  = 'Unknown';
     public $password  = 'password';
 
     public function __construct()
@@ -12,19 +13,18 @@ class User_model extends CI_Model
 
         session_start();
 
-        if (isset($_SESSION['login']))
+        if (isset($_SESSION['user']))
         {
-            $user = $this->db->limit(1)->get_where('personne', ['login' => $_SESSION['login']])->unbuffered_row();
+            $user = $this->db->limit(1)->get_where('personne', ['login' => $_SESSION['user']])->unbuffered_row();
 
             if ($user != NULL)
             {
                 $this->connected = TRUE;                
-                $this->login  = $user->login;
-                $this->password  = $user->password;
+                $this->username  = $user->login;
+                $this->password  = $user->pass;
             }
         }
     }
-
     public function register($login, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country, $state)
     {
         $pass_hash = sha1($password);
@@ -52,15 +52,15 @@ class User_model extends CI_Model
             ]);
     }
 
-    public function connect($username, $password)
+     public function connect($username, $password)
     {
         $user = $this->db->limit(1)->get_where('personne', ['login' => $username])->unbuffered_row();
 
         if ($user != NULL && $password == $user->pass)
         {
-            $_SESSION['login'] = $user->login;
-            $this->connected = TRUE;
-            $this->login  = $user->login;
+            $_SESSION['user'] = $user->login;
+            $this->connected = TRUE;           
+            $this->username  = $user->login;
             $this->password  = $user->pass;
 
             return TRUE;
