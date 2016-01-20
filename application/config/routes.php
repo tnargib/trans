@@ -57,10 +57,9 @@ $route['index'] = 'accueil/index';
 
 $route['connexion'] = 'user/connect';
 $route['deconnexion'] = 'user/disconnect';
-
 $route['inscription'] = 'user/register';
 
-//route['reserver'] = 'reservation/display';
-$route['reserver/rechercher'] = 'reservation/search';
-$route['reserver/ajouter'] = 'reservation/add';
-$route['reserver/supprimer'] = 'reservation/delete';
+$route['reserver'] = 'reservation/display';
+// $route['reserver/rechercher'] = 'reservation/search';
+// $route['reserver/ajouter'] = 'reservation/add';
+// $route['reserver/supprimer'] = 'reservation/delete';

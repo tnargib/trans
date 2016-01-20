@@ -19,16 +19,15 @@ class User_model extends CI_Model
 
             if ($user != NULL)
             {
-                $this->connected = TRUE;                
+                $this->connected = TRUE;
                 $this->username  = $user->login;
                 $this->password  = $user->pass;
             }
         }
     }
+
     public function register($login, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country, $state)
     {
-        $pass_hash = sha1($password);
-
         if ($this->db->get_where('artiste', ['login' => $login])->num_rows() > 0)
             return FALSE;
         else if($password != $passconf)
@@ -41,13 +40,13 @@ class User_model extends CI_Model
                 'nom' => $name,
                 'prenom' => $surname,
                 'nomscene' => $sceneName,
-		        'telephone' => $phone,
-		        'datedebut' => $date,
+    		        'telephone' => $phone,
+    		        'datedebut' => $date,
                 'formation' => $formation,
                 'genre' => $genre,
                 'siteweb' => $site,
                 'artiste_simil' => $influence,
-		        'pays' => $country,
+		            'pays' => $country,
                 'statut' => $state,
             ]);
     }
@@ -59,7 +58,7 @@ class User_model extends CI_Model
         if ($user != NULL && $password == $user->pass)
         {
             $_SESSION['user'] = $user->login;
-            $this->connected = TRUE;           
+            $this->connected = TRUE;
             $this->username  = $user->login;
             $this->password  = $user->pass;
 
@@ -74,4 +73,29 @@ class User_model extends CI_Model
         session_destroy();
         unset($_SESSION);
     }
+
+    public function get_artiste($pseudo)
+  	{
+  		return $this->db->limit(1)->get_where('artiste', ['login' => $pseudo])->unbuffered_row();
+  	}
+
+    public function get_reserv_of($pseudo)
+  	{
+      $id = $this->db->limit(1)->get_where('artiste', ['login' => $pseudo])->unbuffered_row();
+      $id = $id->id_artiste;
+
+      $this->db->select('id_salle, date_reservation, horaire, validation');
+      $this->db->from('reservation');
+      $this->db->where('id_artiste', $id);
+
+      $reserv = $this->db->get()->result();
+
+      foreach ($reserv as $row) {
+        $nom = $this->db->limit(1)->get_where('salle', ['id_salle' => $row->id_salle])->unbuffered_row();
+        // $nom = $nom->result();
+        $row->id_salle = $nom->nom;
+      }
+
+      return $reserv;
+  	}
 }

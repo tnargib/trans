@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'servbdd.iutlan.etu.univ-rennes1.fr',
-	'username' => 'gueganci',
-	'password' => 'swanton619-',
-	'database' => 'pg_gueganci',
+	'hostname' => 'localhost',
+	'username' => 'postgres',
+	'password' => 'root',
+	'database' => 'trans_bdd',
 	'dbdriver' => 'postgre',
 	'dbprefix' => 'trans.',
 	'pconnect' => FALSE,

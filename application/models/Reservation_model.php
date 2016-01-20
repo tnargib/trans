@@ -1,6 +1,6 @@
 <?php
 
-class Todolist_model extends CI_Model
+class Reservation_model extends CI_Model
 {
     public $tasks = [];
 

@@ -23,6 +23,7 @@
 		?>
 		<p><?= form_input($username) ?></p>
 		<p><?= form_input($password) ?></p>
+
 		<p><?= form_submit('connexion', 'Se connecter', ['class' => 'block']) ?></p>
 		<?= form_close() ?>
 	</section>
