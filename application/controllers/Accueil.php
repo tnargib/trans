@@ -30,9 +30,9 @@ class Accueil extends CI_Controller {
 	 }
 
 	public function index()	{
-		
 
-		$data = ['user' => $this->User_model];
+
+		$data['user'] = $this->User_model;
 
 		$this->load->view('header', $data);
 		$this->load->view('index', $data);

@@ -8,7 +8,7 @@ class User extends CI_Controller
 
 		$this->load->model('User_model', '', TRUE);
 
-        $this->load->library('form_validation');
+    $this->load->library('form_validation');
 
 		$this->load->helper('html');
 		$this->load->helper('url');
@@ -20,7 +20,7 @@ class User extends CI_Controller
 		if ($this->User_model->connected)
 			redirect('index');
 
-		$data = ['user' => $this->User_model];
+		$data['user'] = $this->User_model;
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
@@ -53,7 +53,7 @@ class User extends CI_Controller
 
 		$this->load->view('header', $data);
 		$this->load->view('inscription', $data);
-       	$this->load->view('footer', $data);
+    $this->load->view('footer', $data);
 
 	}
 
@@ -62,7 +62,7 @@ class User extends CI_Controller
 		if ($this->User_model->connected)
 			redirect('index');
 
-		$data = ['user' => $this->User_model];
+		$data['user'] = $this->User_model;
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{

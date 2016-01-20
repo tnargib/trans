@@ -1,6 +1,6 @@
 <?php
 
-class Reservation extends CI_Controller
+class Reservation_control extends CI_Controller
 {
 		public function __construct()
 		{
@@ -23,10 +23,10 @@ class Reservation extends CI_Controller
 
 	  public function display()
 	  {
-				$data = ['user' => $this->User_model];
+				$data['user'] = $this->User_model;
 
 				$this->load->view('header', $data);
-				$this->load->view('index', $data);
+				$this->load->view('reservation', $data);
 				$this->load->view('footer', $data);
 	  }
 

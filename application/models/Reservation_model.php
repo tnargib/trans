@@ -12,10 +12,10 @@ class Reservation_model extends CI_Model
 
         if ($this->User_model->connected)
         {
-            $this->tasks = $this->db
-                ->order_by('priority', 'DESC')
-                ->get_where('tasks', ['user_id' => $this->User_model->id])
-                ->result_object();
+            // $this->tasks = $this->db
+            //     ->order_by('priority', 'DESC')
+            //     ->get_where('tasks', ['user_id' => $this->User_model->id])
+            //     ->result_object();
         }
     }
 
