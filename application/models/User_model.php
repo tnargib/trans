@@ -98,4 +98,29 @@ class User_model extends CI_Model
 
       return $reserv;
   	}
+  	
+  	public function editer($login, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country)
+    {
+        if ($this->db->get_where('artiste', ['login' => $login])->num_rows() > 0)
+            return FALSE;
+        else if($password != $passconf)
+            return FALSE;
+        else
+			$this->db->where('login', $user->login);
+            return $this->db->update('artiste', [
+                'login' => $login,
+                'pass' => $password,
+                'mail' => $mail,
+                'nom' => $name,
+                'prenom' => $surname,
+                'nomscene' => $sceneName,
+    		    'telephone' => $phone,
+    		    'datedebut' => $date,
+                'formation' => $formation,
+                'genre' => $genre,
+                'siteweb' => $site,
+                'artiste_simil' => $influence,
+		        'pays' => $country,             
+            ]);
+    }
 }

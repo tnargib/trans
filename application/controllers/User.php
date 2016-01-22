@@ -53,7 +53,7 @@ class User extends CI_Controller
 
 		$this->load->view('header', $data);
 		$this->load->view('inscription', $data);
-    $this->load->view('footer', $data);
+		$this->load->view('footer', $data);
 
 	}
 

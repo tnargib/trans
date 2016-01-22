@@ -63,3 +63,7 @@ $route['reserver'] = 'reservation_control/display';
 // $route['reserver/rechercher'] = 'reservation/search';
 // $route['reserver/ajouter'] = 'reservation/add';
 // $route['reserver/supprimer'] = 'reservation/delete';
+
+$route['profil'] = 'Profil_control/index';
+$route['editer_profil'] = 'Profil_control/editer';
+$route['edition'] = 'Profil_control/register';
