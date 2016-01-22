@@ -18,16 +18,16 @@ class Reservation_control extends CI_Controller
 
 		public function index()
 	  {
+			$data['user'] = $this->User_model;
 
+			$this->load->view('header', $data);
+			$this->load->view('reservation', $data);
+			$this->load->view('footer', $data);
 	  }
 
 	  public function display()
 	  {
-				$data['user'] = $this->User_model;
 
-				$this->load->view('header', $data);
-				$this->load->view('reservation', $data);
-				$this->load->view('footer', $data);
 	  }
 
 	  public function search()
