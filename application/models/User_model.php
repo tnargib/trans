@@ -98,6 +98,23 @@ class User_model extends CI_Model
 
       return $reserv;
   	}
+    
+    public function get_salle($pseudo)
+  	{
+        $id = $this->db->limit(1)->get_where('artiste', ['login' => $pseudo])->unbuffered_row();
+        $id = $id->id_artiste;
+
+        $salle = $this->db->limit(1)->get_where('reservation', ['id_artiste' => $id])->unbuffered_row();
+        $salle = $salle->id_salle;
+        
+        $this->db->select('nom, capacite, adresse, type_salle, telephone, acces_handicap');
+        $this->db->from('salle');
+        $this->db->where('id_salle', $salle);
+
+        $salle = $this->db->get()->result();        
+        
+      return $salle;
+  	}
   	
   	public function editer($sceneName, $password, $passconf, $mail, $name, $surname, $phone, $date, $formation, $genre, $site, $influence, $country)
     {

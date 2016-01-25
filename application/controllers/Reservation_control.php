@@ -7,7 +7,7 @@ class Reservation_control extends CI_Controller
 				parent::__construct();
 
 				$this->load->model('User_model', '', TRUE);
-		    $this->load->model('Reservation_model', '', TRUE);
+		      $this->load->model('Reservation_model', '', TRUE);
 
 		    $this->load->library('form_validation');
 
@@ -19,6 +19,7 @@ class Reservation_control extends CI_Controller
 		public function index()
 	  {
 			$data['user'] = $this->User_model;
+            $data['salle'] = $this->User_model->get_salle($_SESSION['user']);
 
 			$this->load->view('header', $data);
 			$this->load->view('reservation', $data);
@@ -29,9 +30,8 @@ class Reservation_control extends CI_Controller
 	  {
 			$data['user'] = $this->User_model;
 			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['telephone'], $_POST['type_salle'], $_POST['acces_hand']);
-
+            $data['reservation'] = $this->User_model->get_reserv_of($_SESSION['user']);
 			
-
 			$this->load->view('header', $data);
 			$this->load->view('reservation', $data);
 			$this->load->view('footer', $data);

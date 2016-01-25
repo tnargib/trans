@@ -94,13 +94,22 @@
       </tr>
     </thead>
     <tbody>
-			<?php foreach ($reservation as $row): ?>
-				<tr>
-				<?php foreach ($row as $value): ?>
-					<td><?php echo $value ?></td>
-				<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
+        <?php foreach ($salle as $row): ?>
+            <tr>
+            <?php foreach ($row as $value): ?>
+                <td>
+                    <?php 
+                    if($value=='t'){ 
+                        echo "Oui"; 
+                    }elseif($value=='f'){
+                        echo "Non";
+                    }else{
+                        echo $value;
+                    }?>
+                </td>
+            <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 		</table>
 	</section>
