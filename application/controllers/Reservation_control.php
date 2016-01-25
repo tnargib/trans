@@ -28,8 +28,14 @@ class Reservation_control extends CI_Controller
 	  public function search()
 	  {
 			$data['user'] = $this->User_model;
-			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['telephone'], $_POST['type_salle'], $_POST['acces_hand']);
 
+			if (isset($_POST['acces_hand'])) {
+				$acces_hand = true;
+			} else {
+				$acces_hand = false;
+			}
+			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $acces_hand);
+			print_r($_POST);
 			
 
 			$this->load->view('header', $data);
