@@ -34,7 +34,7 @@
 				'id' => 'acces_hand',
 				'type' => 'checkbox',
 				'style' => 'width:10%',
-				'value' => set_value('acces_hand')
+				'value' => 1
 			];
 
 			$type_salle = array(
@@ -75,10 +75,33 @@
 		<p>Adresse : <?= form_input($adresse) ?></p>
 		<p>Téléphone : <?= form_input($telephone) ?></p>
 
-		<p>Type de salle : <?= form_dropdown('Type de salle', $type_salle, 'salle_concert') ?> </p>
+		<p>Type de salle : <?= form_dropdown('type_salle', $type_salle, 'salle_concert') ?> </p>
 		<p style="display:inline-block;">Accès handicapé : </p><?= form_input($acces_hand) ?>
 
 		<?= form_submit('search', 'Lancer la recherche', ['class' => 'block']) ?>
 		<?= form_close() ?>
+
+		<h1 class="text-center">Vos Concerts prévus</h1>
+		<table class="table table-striped">
+			<thead>
+      <tr>
+        <th>Nom</th>
+        <th>Capacité</th>
+        <th>Adresse</th>
+				<th>Téléphone</th>
+				<th>Type de salle</th>
+				<th>Accès handicapé</th>
+      </tr>
+    </thead>
+    <tbody>
+			<?php foreach ($reservation as $row): ?>
+				<tr>
+				<?php foreach ($row as $value): ?>
+					<td><?php echo $value ?></td>
+				<?php endforeach; ?>
+				</tr>
+			<?php endforeach; ?>
+    </tbody>
+		</table>
 	</section>
 </main>

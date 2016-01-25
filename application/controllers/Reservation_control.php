@@ -25,14 +25,16 @@ class Reservation_control extends CI_Controller
 			$this->load->view('footer', $data);
 	  }
 
-	  public function display()
-	  {
-
-	  }
-
 	  public function search()
 	  {
+			$data['user'] = $this->User_model;
+			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['telephone'], $_POST['type_salle'], $_POST['acces_hand']);
 
+			
+
+			$this->load->view('header', $data);
+			$this->load->view('reservation', $data);
+			$this->load->view('footer', $data);
 	  }
 
 	  public function add()
