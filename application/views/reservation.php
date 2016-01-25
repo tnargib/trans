@@ -125,28 +125,28 @@
 				<th>Téléphone</th>
 				<th>Type de salle</th>
 				<th>Accès handicapé</th>
-<<<<<<< HEAD
-      </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($salle as $row): ?>
-            <tr>
-            <?php foreach ($row as $value): ?>
-                <td>
-                    <?php 
-                    if($value=='t'){ 
-                        echo "Oui"; 
-                    }elseif($value=='f'){
-                        echo "Non";
-                    }else{
-                        echo $value;
-                    }?>
-                </td>
-            <?php endforeach; ?>
+
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-=======
+        </thead>
+        <tbody>
+            <?php foreach ($salle as $row): ?>
+                <tr>
+                <?php foreach ($row as $value): ?>
+                    <td>
+                        <?php 
+                        if($value=='t'){ 
+                            echo "Oui"; 
+                        }elseif($value=='f'){
+                            echo "Non";
+                        }else{
+                            echo $value;
+                        }?>
+                    </td>
+                <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -167,7 +167,7 @@
 		</tr>
 		<?php endforeach; ?>
 		</tbody>
->>>>>>> origin/master
+
 		</table>
 		<?php endif; ?>
 		

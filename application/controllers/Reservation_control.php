@@ -7,11 +7,11 @@ class Reservation_control extends CI_Controller
 				parent::__construct();
 
 				$this->load->model('User_model', '', TRUE);
-<<<<<<< HEAD
+
 		      $this->load->model('Reservation_model', '', TRUE);
-=======
+
 		    	$this->load->model('Reservation_model', '', TRUE);
->>>>>>> origin/master
+
 
 		    	$this->load->library('form_validation');
 
@@ -32,21 +32,33 @@ class Reservation_control extends CI_Controller
 
 	  public function search()
 	  {
-			$data['user'] = $this->User_model;
-<<<<<<< HEAD
-			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['telephone'], $_POST['type_salle'], $_POST['acces_hand']);
-            $data['reservation'] = $this->User_model->get_reserv_of($_SESSION['user']);
-			
-=======
+          if (!$this->User_model->connected)
+			redirect('connexion');
 
-			if (isset($_POST['acces_hand'])) {
-				$acces_hand = true;
-			} else {
-				$acces_hand = false;
-			}
-			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $acces_hand);			
+		  $data['user'] = $this->User_model;
+		  $data['artiste'] = $this->User_model->get_artiste($_SESSION['user']);		  
 
->>>>>>> origin/master
+		  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+		      {			
+                /**$this->form_validation->set_rules('nom', 'nom', 'required');
+                $this->form_validation->set_rules('cap_min', 'cap_min', 'required');
+                $this->form_validation->set_rules('cap_max', 'cap_max', 'required');			
+                $this->form_validation->set_rules('adresse', 'adresse', 'required');
+                $this->form_validation->set_rules('type_salle', 'type_salle', 'required');					
+                $this->form_validation->set_rules('date', 'date', 'required');
+                $this->form_validation->set_rules('horaire', 'horaire', 'required');	*/		
+
+			 if ($this->form_validation->run())
+			     {
+                    $recherche = $this->Reservation_model->search($_POST['nom'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $_POST['date'], $_POST['acces_hand']);
+                 
+                    if($recherche === true){
+                        $data['salles'] = $recherche;	
+                    }
+             }else
+				$data['error'] = 'Le formulaire est mal rempli.';
+		  }
+
 			$this->load->view('header', $data);
 			$this->load->view('reservation', $data);
 			$this->load->view('footer', $data);
