@@ -9,17 +9,27 @@ class Reservation_model extends CI_Model
         parent::__construct();
 
         $this->load->model('User_model', '', TRUE);
-
-        if ($this->User_model->connected)
-        {
-            // $this->tasks = $this->db
-            //     ->order_by('priority', 'DESC')
-            //     ->get_where('tasks', ['user_id' => $this->User_model->id])
-            //     ->result_object();
-        }
     }
 
-    public function search($nom, $cap_min, $cap_max, $adresse, $telephone, $type, $acces) {
-      
+    public function search($nom, $cap_min, $cap_max, $adresse, $type, $acces) {
+
+        if($cap_min == "")
+            $cap_min = 0;
+
+        if($cap_max == "")
+            $cap_max = 10^99;
+
+        $this->db->select('*');
+        $this->db->from('salle');
+        if($nom != "")
+            $this->db->where('nom', $nom);
+        $this->db->where('capacite >=', $cap_min);
+        $this->db->where('capacite <=', $cap_max);
+        if($adresse != "")
+            $this->db->where('adresse', $adresse);
+        $this->db->where('type_salle', $type);
+        $this->db->where('acces_handicap', $acces);
+
+        return $this->db->get()->result_array();
     }
 };
