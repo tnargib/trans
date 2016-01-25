@@ -22,13 +22,7 @@
 				'japon' => 'Japon',
 				'coree' => 'Corée du Sud',
       );
-
-			$username = [
-				'name' => 'username',
-				'id' => 'username',
-				'placeholder' => $artiste->login,
-				'value' => $artiste->login
-			];
+			
 			$password = [
 				'name' => 'password',
 				'id' => 'password',
@@ -121,7 +115,7 @@
 
 		<?php if(isset($error)) echo "<center>". $error . "</center>"; ?>
 		
-		<p>Nom de scène : <?= form_input($username) ?></p>
+		<p>Nom de scène : <?= form_input($nomScene) ?></p>
 		<p>Mot de passe : <?= form_password($password) ?></p>
 		<p>Confirmation mot de passe : <?= form_password($passconf) ?></p>
 		<p>Nom : <?= form_input($nom) ?></p>

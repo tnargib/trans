@@ -17,8 +17,12 @@
 		<nav>
 			<ul>
 			<?php if (isset($user) && $user->connected) { ?>
-				<li><a class="titre_head" href="<?= site_url('reserver') ?>">Réserver salle</a></li>
+				<li><a class="titre_head" href="<?= site_url('reserver') ?>">Réserver une salle</a></li>
 				<li><a class="titre_head" href="<?= site_url('profil') ?>">Profil</a></li>
+				<li><a class="titre_head" href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>
+            <?php } elseif ($user->username == "jackie") { ?>
+                <li><a class="titre_head" href="<?= site_url('reserver') ?>">Gérer les réservations</a></li>
+				<li><a class="titre_head" href="<?= site_url('profil') ?>">Gérer les inscriptions</a></li>
 				<li><a class="titre_head" href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>
 			<?php } else { ?>
 				<li><a class="titre_head" href="<?= site_url('index') ?>">Accueil</a></li>

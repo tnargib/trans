@@ -40,7 +40,7 @@ class User_model extends CI_Model
                 'nom' => $name,
                 'prenom' => $surname,
                 'nomscene' => $sceneName,
-    		        'telephone' => $phone,
+    		    'telephone' => $phone,
     		        'datedebut' => $date,
                 'formation' => $formation,
                 'genre' => $genre,
@@ -99,21 +99,21 @@ class User_model extends CI_Model
       return $reserv;
   	}
   	
-  	public function editer($login, $password, $passconf, $mail, $name, $surname, $sceneName, $phone, $date, $formation, $genre, $site, $influence, $country)
+  	public function editer($sceneName, $password, $passconf, $mail, $name, $surname, $phone, $date, $formation, $genre, $site, $influence, $country)
     {
-        if ($this->db->get_where('artiste', ['login' => $login])->num_rows() > 0)
-            return FALSE;
-        else if($password != $passconf)
+        /**if ($this->db->get_where('artiste', ['mail' => $mail])->num_rows() > 0)
+            return FALSE; */
+        
+        if($password != $passconf)
             return FALSE;
         else
-			$this->db->where('login', $user->login);
+			$this->db->where('mail', $user->mail);
             return $this->db->update('artiste', [
-                'login' => $login,
+                'nomscene' => $sceneName,
                 'pass' => $password,
                 'mail' => $mail,
                 'nom' => $name,
-                'prenom' => $surname,
-                'nomscene' => $sceneName,
+                'prenom' => $surname,                
     		    'telephone' => $phone,
     		    'datedebut' => $date,
                 'formation' => $formation,

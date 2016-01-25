@@ -59,9 +59,10 @@ class User extends CI_Controller
 
 	public function connect()
 	{
-		if ($this->User_model->connected)
+		if ($this->User_model->connected){
 			redirect('index');
-
+        }
+        
 		$data['user'] = $this->User_model;
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
