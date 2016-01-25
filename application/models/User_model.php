@@ -107,7 +107,7 @@ class User_model extends CI_Model
         if($password != $passconf)
             return FALSE;
         else
-			$this->db->where('mail', $user->mail);
+			$this->db->where('login', $this->username);
             return $this->db->update('artiste', [
                 'nomscene' => $sceneName,
                 'pass' => $password,
