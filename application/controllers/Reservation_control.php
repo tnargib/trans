@@ -7,9 +7,9 @@ class Reservation_control extends CI_Controller
 				parent::__construct();
 
 				$this->load->model('User_model', '', TRUE);
-		    $this->load->model('Reservation_model', '', TRUE);
+		    	$this->load->model('Reservation_model', '', TRUE);
 
-		    $this->load->library('form_validation');
+		    	$this->load->library('form_validation');
 
 				$this->load->helper('html');
 				$this->load->helper('url');
@@ -34,16 +34,14 @@ class Reservation_control extends CI_Controller
 			} else {
 				$acces_hand = false;
 			}
-			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $acces_hand);
-			print_r($_POST);
-			
+			$data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $acces_hand);			
 
 			$this->load->view('header', $data);
 			$this->load->view('reservation', $data);
 			$this->load->view('footer', $data);
 	  }
 
-	  public function add()
+	  public function add($salle, $id_artiste)
 	  {
 
 	  }
