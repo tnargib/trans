@@ -16,6 +16,7 @@
 	<header>
 		<nav>
 			<ul>
+				<li><img style="height: 100px;" src="<?php echo base_url('/assets/img/transmusicales.png') ?>" alt="" /></li>
 			<?php if (isset($user) && $user->connected) {
 				      if ($user->username == "jackie" || $user->username == "jean-michou") { ?>
 				          <li><a class="titre_head" href="<?= site_url('atm_reserv_control') ?>">Gérer les réservations</a></li>

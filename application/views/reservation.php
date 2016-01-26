@@ -34,11 +34,10 @@
 				'id' => 'date',
 				'type' => 'date',
 				'placeholder' => 'Format YYYY-MM-DD',
-				'value' => set_value('cap_max')
+				'value' => set_value('date')
 			];
 
 			$horaire = array(
-		        '00'  => '00',
 		        '01'  => '01',
 		        '02'  => '02',
 		        '03'  => '03',
@@ -62,7 +61,7 @@
 		        '21'  => '21',
 		        '22'  => '22',
 		        '23'  => '23',
-		        '24'  => '24',
+						'00'  => '00',
 		    );
 
 			$acces_hand = [
@@ -113,32 +112,32 @@
 		<?= form_close() ?>
 
 		<?php if (isset($salles)) { ?>
-        
+
 		<h1 class="text-center">Résultat de la recherche</h1>
 
-		
+
 		<table class="table table-striped">
 		<thead>
 			<tr>
-                <th>Numéro</th>
+        <th>Numéro</th>
 				<th>Nom</th>
 				<th>Capacité</th>
 				<th>Adresse</th>
 				<th>Téléphone</th>
 				<th>Type de salle</th>
 				<th>Accès handicapé</th>
+				<th></th>
+      </tr>
+    </thead>
 
-            </tr>
-        </thead>
-       
 		<tbody>
 		<?php foreach ($salles as $row): ?>
             <tr>
             <?php foreach ($row as $value): ?>
                 <td>
-                    <?php 
-                    if($value=='t'){ 
-                        echo "Oui"; 
+                    <?php
+                    if($value=='t'){
+                        echo "Oui";
                     }elseif($value=='f'){
                         echo "Non";
                     }else{
@@ -153,6 +152,6 @@
 
 		</table>
 		<?php } ?>
-		
+
 	</section>
 </main>

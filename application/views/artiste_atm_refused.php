@@ -20,6 +20,7 @@
         <th>Genre</th>
         <th>Site web</th>
         <th>Influence</th>
+				<th></th>
       </tr>
 		</thead>
 		<tbody>
@@ -36,6 +37,7 @@
       <td><?php echo $row['genre'] ?></td>
       <td><?php echo $row['siteweb'] ?></td>
       <td><?php echo $row['artiste_simil'] ?></td>
+			<td><?php echo anchor('', 'Rajouter') ?></td>
 		</tr>
 		<?php endforeach; ?>
 		</tbody>

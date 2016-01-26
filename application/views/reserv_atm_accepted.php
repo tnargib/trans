@@ -13,6 +13,7 @@
 				<th>Artiste</th>
 				<th>date (YYYY-MM-DD)</th>
         <th>Horaire</th>
+				<th></th>
       </tr>
 		</thead>
 		<tbody>
@@ -22,6 +23,7 @@
 			<td><?php echo $row['nomscene'] ?></td>
 			<td><?php echo $row['date_reservation'] ?></td>
 			<td><?php echo $row['horaire'] ?></td>
+			<td><?php echo anchor('', 'Retirer') ?></td>
 		</tr>
 		<?php endforeach; ?>
 		</tbody>

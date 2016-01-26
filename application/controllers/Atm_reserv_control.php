@@ -51,13 +51,13 @@ class Atm_reserv_control extends CI_Controller
 
     public function accept($id_res)
 	  {
-      $data['reserv'] = $this->Atm_reserv_model->accept($id_res);
-       redirect('Atm_reserv_control/waiting');
+      $this->Atm_reserv_model->accept($id_res);
+      redirect('Atm_reserv_control/waiting');
 	  }
 
     public function refuse($id_res)
 	  {
-      $data['reserv'] = $this->Atm_reserv_model->refuse($id_res);
-       redirect('Atm_reserv_control/waiting');
+    	$this->Atm_reserv_model->refuse($id_res);
+      redirect('Atm_reserv_control/waiting');
 	  }
 };

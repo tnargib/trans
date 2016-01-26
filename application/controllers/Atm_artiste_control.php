@@ -51,13 +51,13 @@ class Atm_artiste_control extends CI_Controller
 
     public function accept($id_artiste)
 	  {
-      $data['artistes'] = $this->Atm_artiste_model->accept($id_artiste);
-       redirect('Atm_artiste_control/waiting');
+      $this->Atm_artiste_model->accept($id_artiste);
+      redirect('Atm_artiste_control/waiting');
 	  }
 
     public function refuse($id_artiste)
 	  {
-      $data['artistes'] = $this->Atm_artiste_model->refuse($id_artiste);
-       redirect('Atm_artiste_control/waiting');
+      $this->Atm_artiste_model->refuse($id_artiste);
+      redirect('Atm_artiste_control/waiting');
 	  }
 };
