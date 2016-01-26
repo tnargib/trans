@@ -112,13 +112,15 @@
 		<?= form_submit('search', 'Lancer la recherche', ['class' => 'block']) ?>
 		<?= form_close() ?>
 
-		<?php if (isset($salles)): ?>
+		<?php if (isset($salles)) { ?>
+        
 		<h1 class="text-center">Résultat de la recherche</h1>
 
 		
 		<table class="table table-striped">
 		<thead>
 			<tr>
+                <th>Numéro</th>
 				<th>Nom</th>
 				<th>Capacité</th>
 				<th>Adresse</th>
@@ -128,48 +130,29 @@
 
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($salle as $row): ?>
-                <tr>
-                <?php foreach ($row as $value): ?>
-                    <td>
-                        <?php 
-                        if($value=='t'){ 
-                            echo "Oui"; 
-                        }elseif($value=='f'){
-                            echo "Non";
-                        }else{
-                            echo $value;
-                        }?>
-                    </td>
-                <?php endforeach; ?>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-
-			</tr>
-		</thead>
+       
 		<tbody>
 		<?php foreach ($salles as $row): ?>
-		<tr>
-			<td><?php echo $row['nom']; ?></td>
-			<td><?php echo $row['capacite'] ?></td>
-			<td><?php echo $row['adresse'] ?></td>
-			<td><?php echo $row['telephone'] ?></td>
-			<td><?php echo $row['type_salle'] ?></td>
-			<?php if ($row['acces_handicap'] == 'f') {
-				echo '<td>Non</td>';
-			} else {
-				echo '<td>Oui</td>';
-			} ?>
-
-			<td><?php echo anchor('Reservation_control/add/'.$row.'/'.$_SESSION['user'], 'Réserver') ?></td>
-		</tr>
-		<?php endforeach; ?>
+            <tr>
+            <?php foreach ($row as $value): ?>
+                <td>
+                    <?php 
+                    if($value=='t'){ 
+                        echo "Oui"; 
+                    }elseif($value=='f'){
+                        echo "Non";
+                    }else{
+                        echo $value;
+                    }?>
+                </td>
+            <?php endforeach; ?>
+                <td><?php echo anchor('Reservation_control/add/'.$row->id_salle, 'Réserver') ?></td>
+            </tr>
+        <?php endforeach; ?>
 		</tbody>
 
 		</table>
-		<?php endif; ?>
+		<?php } ?>
 		
 	</section>
 </main>
