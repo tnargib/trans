@@ -54,7 +54,7 @@ class Profil_control extends CI_Controller {
 			$this->form_validation->set_rules('genre', 'genre', 'required');
 			$this->form_validation->set_rules('influence', 'influence', 'required');
 			$this->form_validation->set_rules('mail', 'mail', 'required');
-			$this->form_validation->set_rules('telephone', 'telpehone', 'required');
+			$this->form_validation->set_rules('telephone', 'telephone', 'required');
 			$this->form_validation->set_rules('site', 'site', 'required');
 			
 

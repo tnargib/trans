@@ -32,41 +32,47 @@ class Reservation_control extends CI_Controller
 
 	  public function search()
 	  {
-          if (!$this->User_model->connected)
+          if (!$this->User_model->connected){
 			redirect('connexion');
+          }
 
 		  $data['user'] = $this->User_model;
 		  $data['artiste'] = $this->User_model->get_artiste($_SESSION['user']);		  
 
 		  if ($_SERVER['REQUEST_METHOD'] == 'POST')
-		      {			
-                /**$this->form_validation->set_rules('nom', 'nom', 'required');
-                $this->form_validation->set_rules('cap_min', 'cap_min', 'required');
-                $this->form_validation->set_rules('cap_max', 'cap_max', 'required');			
-                $this->form_validation->set_rules('adresse', 'adresse', 'required');
-                $this->form_validation->set_rules('type_salle', 'type_salle', 'required');					
-                $this->form_validation->set_rules('date', 'date', 'required');
-                $this->form_validation->set_rules('horaire', 'horaire', 'required');	*/		
+		      {		                             
+                 if((int)$_POST['cap_min'] > (int)$_POST['cap_max']){
+                     $data['error'] = 'Capacités incorrectes.';
+                 }
+                 elseif(!isset($_POST['nom_salle']) && !isset($_POST['cap_min'])&& !isset($_POST['cap_max'])&& !isset($_POST['adresse'])&& !isset($_POST['type_salle'])&& !isset($_POST['date'])&& !isset($_POST['horaire']) && !isset($_POST['acces_hand'])){
+                     $data['error'] = 'Pas assez de renseignement';
+                 }
+                 else{
+                     if(isset($_POST['acces_hand'])){
+                         $acces_hand = true;
+                     }
+                     else{
+                         $acces_hand = false;
+                     }
+                     if($this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $_POST['date'], $_POST['horaire'],$acces_hand) === FALSE){
+                        $data['error'] = 'Vous avez déjà un concert prévu à cette date.';                     
+                    } else{
+                        $data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $_POST['date'], $_POST['horaire'],$acces_hand);
+                     }                               
 
-			 if ($this->form_validation->run())
-			     {
-                    $recherche = $this->Reservation_model->search($_POST['nom'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $_POST['date'], $_POST['acces_hand']);
-                 
-                    if($recherche === true){
-                        $data['salles'] = $recherche;	
                     }
-             }else
-				$data['error'] = 'Le formulaire est mal rempli.';
-		  }
-
+                
+            }   
+            
+            
 			$this->load->view('header', $data);
 			$this->load->view('reservation', $data);
 			$this->load->view('footer', $data);
-	  }
+      }
 
-	  public function add($salle, $id_artiste)
+	  public function add($salle)
 	  {
-
+            
 	  }
 
 	  public function delete()
