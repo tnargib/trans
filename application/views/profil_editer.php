@@ -7,21 +7,21 @@
 			echo form_open('edition');
 			
 			$options = array(
-				'france'  => 'France',
-				'murica'    => 'Etats-Unis',
-				'allemagne'   => 'Allemagne',
-				'bresil' => 'Brésil',
-				'angleterre'    => 'Angleterre',
-				'espagne'   => 'Espagne',
-				'russie' => 'Russie',
-				'pays_bas' => 'Pays-Bas',
-				'italie' => 'Italie',
-				'mexique' => 'Mexique',
-				'pologne' => 'Pologne',
-				'chine' => 'Chine',
-				'japon' => 'Japon',
-				'coree' => 'Corée du Sud',
-      );
+                'France'  => 'France',
+                'Etats-Unis'    => 'Etats-Unis',
+                'Allemagne'   => 'Allemagne',
+                'Brésil' => 'Brésil',
+				'Angleterre'    => 'Angleterre',
+                'Espagne'   => 'Espagne',
+                'Russie' => 'Russie',
+				'Pays-bas' => 'Pays-Bas',
+				'Italie' => 'Italie',
+				'Mexique' => 'Mexique',
+				'Pologne' => 'Pologne',
+				'Chine' => 'Chine',
+				'Japon' => 'Japon',
+				'Corée du Sud' => 'Corée du Sud',
+            );
 			
 			$password = [
 				'name' => 'password',
@@ -122,7 +122,7 @@
 		<p>Prénom : <?= form_input($prenom) ?></p>
 
 
-		<p>Pays : <?= form_dropdown('pays', $options, 'france') ?></p>
+		<p>Pays : <?= form_dropdown('pays', $options, $artiste->pays) ?></p>
 		<p>Année de formation : <?= form_input($date) ?></p>
 		<p>Composition du groupe : <?= form_input($formation) ?></p>
 		<p>Genre : <?= form_input($genre) ?></p>

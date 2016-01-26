@@ -5,20 +5,20 @@
 			echo form_open('inscription');
 
 			$options = array(
-        'france'  => 'France',
-        'murica'    => 'Etats-Unis',
-        'allemagne'   => 'Allemagne',
-        'bresil' => 'Brésil',
+        'France'  => 'France',
+        'Etats-Unis'    => 'Etats-Unis',
+        'Allemagne'   => 'Allemagne',
+        'Brésil' => 'Brésil',
 				'angleterre'    => 'Angleterre',
-        'espagne'   => 'Espagne',
-        'russie' => 'Russie',
-				'pays_bas' => 'Pays-Bas',
-				'italie' => 'Italie',
-				'mexique' => 'Mexique',
-				'pologne' => 'Pologne',
-				'chine' => 'Chine',
-				'japon' => 'Japon',
-				'coree' => 'Corée du Sud',
+        'Espagne'   => 'Espagne',
+        'Russie' => 'Russie',
+				'Pays-bas' => 'Pays-Bas',
+				'Italie' => 'Italie',
+				'Mexique' => 'Mexique',
+				'Pologne' => 'Pologne',
+				'Chine' => 'Chine',
+				'Japon' => 'Japon',
+				'Corée du Sud' => 'Corée du Sud',
       );
 
 			$username = [
