@@ -16,16 +16,16 @@
 	<header>
 		<nav>
 			<ul>
-			<?php if (isset($user) && $user->connected) { 
-                    if ($user->username == "jackie" || $user->username == "jean-michou") { ?>
-                        <li><a class="titre_head" href="<?= site_url('') ?>">Gérer les réservations</a></li>
-				        <li><a class="titre_head" href="<?= site_url('') ?>">Gérer les inscriptions</a></li>
-				        <li><a class="titre_head" href="<?= site_url('deconnexion') ?>">Déconnexion</a></li> 
-            <?php } else { ?>                
-				    <li><a class="titre_head" href="<?= site_url('reserver') ?>">Réserver une salle</a></li>
-				    <li><a class="titre_head" href="<?= site_url('profil') ?>">Profil</a></li>
-				    <li><a class="titre_head" href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>                
-            
+			<?php if (isset($user) && $user->connected) {
+				      if ($user->username == "jackie" || $user->username == "jean-michou") { ?>
+				          <li><a class="titre_head" href="<?= site_url('atm_reserv_control') ?>">Gérer les réservations</a></li>
+					        <li><a class="titre_head" href="<?= site_url('atm_artiste_control') ?>">Gérer les inscriptions</a></li>
+					        <li><a class="titre_head" href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>
+				      <?php } else { ?>
+							    <li><a class="titre_head" href="<?= site_url('reserver') ?>">Réserver une salle</a></li>
+							    <li><a class="titre_head" href="<?= site_url('profil') ?>">Profil</a></li>
+							    <li><a class="titre_head" href="<?= site_url('deconnexion') ?>">Déconnexion</a></li>
+
 			<?php } } else { ?>
 				<li><a class="titre_head" href="<?= site_url('index') ?>">Accueil</a></li>
 				<li><a class="titre_head" href="<?= site_url('inscription') ?>"?>Inscription</a></li>
