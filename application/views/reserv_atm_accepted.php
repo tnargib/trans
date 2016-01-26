@@ -1,18 +1,18 @@
 <main>
 	<section class="large">
 		<ul class="nav nav-tabs nav-justified">
-      <li role="presentation" class="active"><a href="<?php echo site_url('atm_reserv_control/index') ?>">Réservations Validés</a></li>
+      <li role="presentation" class="active"><a href="<?php echo site_url('atm_reserv_control/index') ?>">Réservations validées</a></li>
       <li role="presentation"><a href="<?php echo site_url('atm_reserv_control/waiting') ?>">Réservations en attente</a></li>
-      <li role="presentation"><a href="<?php echo site_url('atm_reserv_control/refused') ?>">Réservation refusés</a></li>
+      <li role="presentation"><a href="<?php echo site_url('atm_reserv_control/refused') ?>">Réservations refusées</a></li>
     </ul>
 
     <table class="table table-striped">
 		<thead>
 			<tr>
-				<th>salle</th>
-				<th>artiste</th>
+				<th>Salle</th>
+				<th>Artiste</th>
 				<th>date (YYYY-MM-DD)</th>
-        <th>horaire</th>
+        <th>Horaire</th>
       </tr>
 		</thead>
 		<tbody>

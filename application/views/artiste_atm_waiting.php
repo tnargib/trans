@@ -31,15 +31,15 @@
   			<td><?php echo $row['nom'] ?></td>
   			<td><?php echo $row['prenom'] ?></td>
   			<td><?php echo $row['mail'] ?></td>
-        <td><?php echo $row['telephone'] ?></td>
-        <td><?php echo $row['pays'] ?></td>
-        <td><?php echo $row['datedebut'] ?></td>
-        <td><?php echo $row['formation'] ?></td>
-        <td><?php echo $row['genre'] ?></td>
-        <td><?php echo $row['siteweb'] ?></td>
-        <td><?php echo $row['artiste_simil'] ?></td>
-        <td><?php echo anchor('atm_artiste_control/accept/'.$row['id_artiste'], 'Accepter') ?></td>
-        <td><?php echo anchor('atm_artiste_control/refuse/'.$row['id_artiste'], 'Refuser') ?></td>
+            <td><?php echo $row['telephone'] ?></td>
+            <td><?php echo $row['pays'] ?></td>
+            <td><?php echo $row['datedebut'] ?></td>
+            <td><?php echo $row['formation'] ?></td>
+            <td><?php echo $row['genre'] ?></td>
+            <td><?php echo $row['siteweb'] ?></td>
+            <td><?php echo $row['artiste_simil'] ?></td>
+            <td><?php echo anchor('atm_artiste_control/accept/'.$row['id_artiste'], 'Accepter') ?></td>
+            <td><?php echo anchor('atm_artiste_control/refuse/'.$row['id_artiste'], 'Refuser') ?></td>
   		</tr>
   		<?php endforeach; ?>
   		</tbody>

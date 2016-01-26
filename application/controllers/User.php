@@ -39,16 +39,25 @@ class User extends CI_Controller
 			$this->form_validation->set_rules('influence', 'influence', 'required');
 
 			if ($this->form_validation->run())
-			{
-				if($this->User_model->register($_POST['username'], $_POST['password'], $_POST['passconf'], $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['nomScene'], $_POST['telephone'], $_POST['date'], $_POST['formation'], $_POST['genre'], $_POST['site'], $_POST['influence'], $_POST['pays'], "En attente") === TRUE)
+			{                
+                if(!valid_email($_POST['mail'])){
+                    $data['error'] = 'Adresse mail incorrecte.';
+                }
+                   
+				else if($this->User_model->register($_POST['username'], $_POST['password'], $_POST['passconf'], $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['nomScene'], $_POST['telephone'], $_POST['date'], $_POST['formation'], $_POST['genre'], $_POST['site'], $_POST['influence'], $_POST['pays'], "En attente") === TRUE){
 					redirect('index');
-				else if($_POST['passconf'] != $_POST['password'])
+                }
+                
+				else if($_POST['passconf'] != $_POST['password']){
 					$data['error'] = 'Les mots de passe ne coresspondent pas. Veuillez réessayer.';
-				else
+                }
+				else{
 					$data['error'] = 'Le pseudo existe déjà. Veuillez réessayer.';
+                }
 			}
-			else
+			else{
 				$data['error'] = 'Le formulaire est mal rempli.';
+            }            
 		}
 
 		$this->load->view('header', $data);
