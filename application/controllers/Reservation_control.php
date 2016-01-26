@@ -58,12 +58,12 @@ class Reservation_control extends CI_Controller
                         $data['error'] = 'Vous avez déjà un concert prévu à cette date.';
                     } else{
                         $data['salles'] = $this->Reservation_model->search($_POST['nom_salle'], $_POST['cap_min'], $_POST['cap_max'], $_POST['adresse'], $_POST['type_salle'], $_POST['date'], $_POST['horaire'],$acces_hand);
+
                      }
 
                     }
 
             }
-
 
 			$this->load->view('header', $data);
 			$this->load->view('reservation', $data);
@@ -73,7 +73,7 @@ class Reservation_control extends CI_Controller
 	  public function add($salle)
 	  {
 			$data['user'] = $this->User_model;
-
+			
 			$this->form_validation->set_rules('date', 'Date', 'callback_check_dispo');
 
 			$this->load->view('header', $data);
